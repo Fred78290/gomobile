@@ -60,6 +60,11 @@ are copied into the output.
 Flag -iosversion sets the minimal version of the iOS SDK to compile against.
 The default version is 13.0.
 
+Flag -macosversion sets the minimal version of the MacOSX SDK to compile against.
+The default version is current.
+
+Flag -clang-flags to pass extras flags to clang.
+
 Flag -androidapi sets the Android API version to compile against.
 The default and minimum is 16.
 
@@ -259,7 +264,7 @@ func addBuildFlags(cmd *command) {
 	cmd.flag.StringVar(&buildTarget, "target", "android", "")
 	cmd.flag.StringVar(&buildBundleID, "bundleid", "", "")
 	cmd.flag.StringVar(&buildIOSVersion, "iosversion", "13.0", "")
-	cmd.flag.StringVar(&buildMacOSVersion, "macosversion", "13.0", "")
+	cmd.flag.StringVar(&buildMacOSVersion, "macosversion", "", "")
 	cmd.flag.StringVar(&buildExtraFlags, "clang-flags", "", "")
 	cmd.flag.IntVar(&buildAndroidAPI, "androidapi", minAndroidAPI, "")
 
