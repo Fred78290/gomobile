@@ -249,12 +249,20 @@ func envInit() (err error) {
 				if arch == "arm64" {
 					cflags += " -fembed-bitcode"
 				}
+
+				if buildMacOSVersion != "" {
+					cflags += " -mmacos-version-min=" + buildMacOSVersion
+				}
 			default:
 				panic(fmt.Errorf("unknown Apple target: %s/%s", platform, arch))
 			}
 
 			if err != nil {
 				return err
+			}
+
+			if len(buildExtraFlags) > 0 {
+				cflags = cflags + " " + buildExtraFlags
 			}
 
 			env = append(env,
